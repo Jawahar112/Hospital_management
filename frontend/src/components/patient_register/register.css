@@ -1,0 +1,22 @@
+*{
+margin:0;
+\padding:0;
+box-sizing: border-box;
+
+}
+body{
+height: 100vh;
+width: 100%;
+background-image: url('../../assests//images/register.jpeg');
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+
+.form-container{
+
+
+
+background:rgba(0, 0, 0, 0.2);
+
+}
