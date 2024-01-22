@@ -9,7 +9,7 @@ export default function App() {
  
   <BrowserRouter>
   <Routes>
-    <Route path='/register' exact element={<Register/>}/>
+    <Route path='/patient/register' exact element={<Register/>}/>
   </Routes>
   </BrowserRouter>
     

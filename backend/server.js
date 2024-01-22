@@ -1,10 +1,17 @@
-
+const bp=require('body-parser')
 const app=require('express')()
+
+
 const http=require('http').createServer(app)
-const port=3000;
-app.get('/',(req,res)=>{
-   res.send("hello world")
-})
+require('./src/routes/routerindex')(app)
+
+const port=1000;
+app.use(bp.json())
+app.use(bp.urlencoded())
+ 
+
 http.listen(port,()=>{
-   console.log('connected on 3000');
+   console.log('connected on 1000');
 })
+
+
