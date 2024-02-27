@@ -61,7 +61,7 @@ setsucessful(false);
     </div>
     <div className='form-group pt-3'>
       <select className='form-select'  onChange={(e)=>{setdata({...data,bloodtype:e.target.value})}} validations={[required]}>
-        <option defaultValue="select">select your nationality</option>
+        <option defaultValue="select">select your Blood group</option>
         <option>A+</option>
         <option>A-</option>
         <option>B+</option>

@@ -3,12 +3,17 @@ import Input from "react-validation/build/input"
 import React, { useEffect, useRef, useState } from 'react'
 import Form from "react-validation/build/form"
 import CheckButton from "react-validation/build/button"
+import Authservice from "../../services/Auth.service"
+import { useNavigate } from "react-router-dom"
+
 export default function Adminlogin() {
+  
     const form=useRef()
+    const navigate=useNavigate()
   const [message,setmessage]=useState("");
   const [sucessfull,setsucessful]=useState(false);
   const checkbtn=useRef()
-  const[data,setdata]=useState({firstname:"",lastname:"",nationality:"",bloodtype:"",address:"",doa:"",email:"",phoneno:"",emergencyphone:""})
+  const[data,setdata]=useState({email:"",password:""})
   async function submithandle(e){
     e.preventDefault();
     setmessage("");
@@ -16,7 +21,19 @@ export default function Adminlogin() {
     form.current.validateAll();
     if(checkbtn.current.context._errors.length===0){
 
-    
+    Authservice.adminlogin(data.email,data.password).then((res)=>{
+      setsucessful(true);
+      console.log(res.data.verified);
+    if(res.data.verified=true){
+navigate('/admin/dashboard')
+setsucessful(true)
+    }
+   else{
+    navigate('/admin/login')
+    setsucessful(false)
+    setmessage("Enter valid email or password")
+   }
+    });
   
   }
 }
@@ -37,10 +54,10 @@ export default function Adminlogin() {
       <h1 className='text-center text-white'>Admin Login</h1>
     <div className='form-group row'>
       <div className='col'>
-        <Input type='text' className='form-control' placeholder='Email' onChange={(e)=>{setdata({...data,firstname:e.target.value})}} validations={[required]}/>
+        <Input type='text' className='form-control' placeholder='Email' onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]}/>
       </div>
       <div className='col'>
-        <Input type='password' className='form-control' placeholder='Password'  onChange={(e)=>{setdata({...data,lastname:e.target.value})}} validations={[required]} />
+        <Input type='password' className='form-control' placeholder='Password'  onChange={(e)=>{setdata({...data,password:e.target.value})}} validations={[required]} />
       </div>
     </div>
    
@@ -50,7 +67,7 @@ export default function Adminlogin() {
       <button type='submit' className='btn btn-primary m-2' >Login</button>
       {message && (<div className='form-group'>
 
-        <div className={sucessfull?"alert alert-sucess":"aler alert-danger"} role='alert'>{message}</div>
+        <div className={sucessfull?"alert alert-sucess":"alert alert-danger"} role='alert'>{message}</div>
       </div>)}
       <CheckButton style={{display:"none"}} ref={checkbtn}/>
     </div>

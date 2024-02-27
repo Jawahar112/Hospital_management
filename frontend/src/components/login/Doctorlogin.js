@@ -3,12 +3,16 @@ import Input from "react-validation/build/input"
 import React, { useEffect, useRef, useState } from 'react'
 import Form from "react-validation/build/form"
 import CheckButton from "react-validation/build/button"
+import Authservice from "../../services/Auth.service"
+import { useNavigate,useHistory } from "react-router-dom"
 export default function Doctorlogin() {
     const form=useRef()
   const [message,setmessage]=useState("");
   const [sucessfull,setsucessful]=useState(false);
   const checkbtn=useRef()
-  const[data,setdata]=useState({firstname:"",lastname:"",nationality:"",bloodtype:"",address:"",doa:"",email:"",phoneno:"",emergencyphone:""})
+  const navigate=useNavigate()
+ 
+  const[data,setdata]=useState({email:"",password:""})
   async function submithandle(e){
     e.preventDefault();
     setmessage("");
@@ -16,7 +20,15 @@ export default function Doctorlogin() {
     form.current.validateAll();
     if(checkbtn.current.context._errors.length===0){
 
-    
+    Authservice.doctorlogin(data.email,data.password).then((res)=>{
+      console.log(res);
+      if(res.data.verified){
+        navigate('/doctor/dashboard');
+      }
+      else{
+        navigate('/doctor/login')
+      }
+    })
   
   }
 }
@@ -37,10 +49,10 @@ export default function Doctorlogin() {
       <h1 className='text-center text-white'>Doctor Login</h1>
     <div className='form-group row'>
       <div className='col'>
-        <Input type='text' className='form-control' placeholder='Email' onChange={(e)=>{setdata({...data,firstname:e.target.value})}} validations={[required]}/>
+        <Input type='text' className='form-control' placeholder='Email' onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]}/>
       </div>
       <div className='col'>
-        <Input type='password' className='form-control' placeholder='Password'  onChange={(e)=>{setdata({...data,lastname:e.target.value})}} validations={[required]} />
+        <Input type='password' className='form-control' placeholder='Password'  onChange={(e)=>{setdata({...data,password:e.target.value})}} validations={[required]} />
       </div>
     </div>
    

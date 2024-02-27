@@ -9,6 +9,6 @@ router.use(cors({
  module.exports=function(app){
 
  app.use(express.json())
- app.use('/',router1)
- app.use('/api',router2)
+ app.use('/api',router1)
+ app.use('/auth',router2)
  }
