@@ -1,19 +1,23 @@
 
 import Input from "react-validation/build/input"
-import React, { useEffect, useRef, useState } from 'react'
+import React, {  useEffect, useRef, useState } from 'react'
 import Form from "react-validation/build/form"
 import CheckButton from "react-validation/build/button"
 import Authservice from "../../services/Auth.service"
-import { useNavigate } from "react-router-dom"
+import {  useLocation, useNavigate } from "react-router-dom"
 
 export default function Adminlogin() {
-  
+
+
+ 
     const form=useRef()
     const navigate=useNavigate()
   const [message,setmessage]=useState("");
   const [sucessfull,setsucessful]=useState(false);
   const checkbtn=useRef()
+  
   const[data,setdata]=useState({email:"",password:""})
+  
   async function submithandle(e){
     e.preventDefault();
     setmessage("");
@@ -22,11 +26,18 @@ export default function Adminlogin() {
     if(checkbtn.current.context._errors.length===0){
 
     Authservice.adminlogin(data.email,data.password).then((res)=>{
-      setsucessful(true);
-      console.log(res.data.verified);
-    if(res.data.verified=true){
-navigate('/admin/dashboard')
-setsucessful(true)
+  
+      
+    if(res.data.verified && setsucessful){
+      setsucessful(true)
+   
+
+     
+      
+      navigate('/admin/dashboard',{replace:true})
+
+
+
     }
    else{
     navigate('/admin/login')
@@ -54,10 +65,10 @@ setsucessful(true)
       <h1 className='text-center text-white'>Admin Login</h1>
     <div className='form-group row'>
       <div className='col'>
-        <Input type='text' className='form-control' placeholder='Email' onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]}/>
+        <Input type='text' className='form-control' name="email" placeholder='Email' onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]}/>
       </div>
       <div className='col'>
-        <Input type='password' className='form-control' placeholder='Password'  onChange={(e)=>{setdata({...data,password:e.target.value})}} validations={[required]} />
+        <Input type='password' className='form-control' name="password" placeholder='Password'  onChange={(e)=>{setdata({...data,password:e.target.value})}} validations={[required]} />
       </div>
     </div>
    

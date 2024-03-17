@@ -2,21 +2,21 @@
 margin:0;
 padding:0;
 box-sizing: border-box;
-
+font-family:sans-serif;
 }
-body{
+.patient_register{
 
 width: 100%;
 background-image: url('../../assests//images/register.jpeg');
 background-repeat: no-repeat;
 background-size: cover;
-
+height: 100vh;
 }
 
 .form-container{
 
 
 
-background:rgba(0, 0, 0, 0.2);
+background:rgba(0, 0, 0, 0.1);
 
 }

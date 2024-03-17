@@ -1,10 +1,10 @@
 
 import Input from "react-validation/build/input"
-import React, { useEffect, useRef, useState } from 'react'
+import React, {  useRef, useState } from 'react'
 import Form from "react-validation/build/form"
 import CheckButton from "react-validation/build/button"
 import Authservice from "../../services/Auth.service"
-import { useNavigate,useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 export default function Doctorlogin() {
     const form=useRef()
   const [message,setmessage]=useState("");
@@ -23,10 +23,14 @@ export default function Doctorlogin() {
     Authservice.doctorlogin(data.email,data.password).then((res)=>{
       console.log(res);
       if(res.data.verified){
-        navigate('/doctor/dashboard');
+        navigate('/doctor/dashboard',{replace:true});
+        setsucessful(true)
+        setmessage("")
       }
       else{
         navigate('/doctor/login')
+        setmessage(res.data.msg)
+setsucessful(false)
       }
     })
   
@@ -49,10 +53,10 @@ export default function Doctorlogin() {
       <h1 className='text-center text-white'>Doctor Login</h1>
     <div className='form-group row'>
       <div className='col'>
-        <Input type='text' className='form-control' placeholder='Email' onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]}/>
+        <Input type='text' className='form-control' name="email" placeholder='Email' onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]}/>
       </div>
       <div className='col'>
-        <Input type='password' className='form-control' placeholder='Password'  onChange={(e)=>{setdata({...data,password:e.target.value})}} validations={[required]} />
+        <Input type='password' className='form-control' name="password" placeholder='Password'  onChange={(e)=>{setdata({...data,password:e.target.value})}} validations={[required]} />
       </div>
     </div>
    
@@ -62,7 +66,7 @@ export default function Doctorlogin() {
       <button type='submit' className='btn btn-primary m-2' >Login</button>
       {message && (<div className='form-group'>
 
-        <div className={sucessfull?"alert alert-sucess":"aler alert-danger"} role='alert'>{message}</div>
+        <div className={sucessfull?"alert alert-sucess":"alert alert-danger"} role='alert'>{message}</div>
       </div>)}
       <CheckButton style={{display:"none"}} ref={checkbtn}/>
     </div>

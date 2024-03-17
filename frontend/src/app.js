@@ -1,34 +1,57 @@
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import React from "react";
+import {Routes,Route, Navigate, BrowserRouter} from 'react-router-dom'
+import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import Register from './components/patient_register/register'
-import AdminDashboard from './components/common/admin/dashboard/Dashboard';
-import Patients from './components/patients_list/Patients';
-import Homepage from './components/Homepage/Homepage';
-import DoctorDashboard from './components/common/doctor/Dashboard/DoctorDashboard';
-import StaffDashboard from './components/common/staff/Dashboard/StaffDashboard';
-import Adminlogin from './components/login/Adminlogin';
-import Stafflogin from './components/login/Stafflogin';
-import Doctorlogin from './components/login/Doctorlogin';
-export default function App() {
+import Register from './pages/patient_register/register'
+import AdminDashboard from './pages/common/admin/dashboard/Dashboard';
+import Patients from './pages/patients_list/Patients';
+import Homepage from './pages/Homepage/Homepage';
+import DoctorDashboard from './pages/common/doctor/Dashboard/DoctorDashboard';
+import StaffDashboard from './pages/common/staff/Dashboard/StaffDashboard';
+import Adminlogin from './pages/login/Adminlogin';
+import Stafflogin from './pages/login/Stafflogin';
+import GetPatients from './pages/patients_list/Patients';
+import Doctorlogin from './pages/login/Doctorlogin';
+import Protectedroute from './utils/Protectedroute';
+import Unauthorized from './pages/404/Unauthorized';
 
-  return (
+
+export default function App() {
+  
+   
+  
+    
+  
+  
  
-  <BrowserRouter>
+  return (
+   
+<BrowserRouter>
   <Routes>
-    <Route path='/patient/register' exact element={<Register/>}/>
-    <Route path='/admin/dashboard' exact element={<AdminDashboard/>}/>
+    
+
+    <Route path='/login' exact element={<Homepage/>}/>
+    <Route path='/staff/login' exact element={<Stafflogin/>}/>
+    <Route path='/doctor/login' exact element={<Doctorlogin/>}/>
+    <Route path='/admin/login' exact element={<Adminlogin/>}/>
+    <Route path='/unauthorized' element={<Unauthorized/>}/>
+  
+
+    <Route element={<Protectedroute/>}>
+<Route path='/admin/dashboard' element={<AdminDashboard/>}/>
+
+  <Route path='/PatientList' exact element={<GetPatients/>}/>
     <Route path='/admin/patient/patient_list' exact element={<Patients/>}/>
-    <Route path='/' exact element={<Homepage/>}/>
+    </Route>
+  
+    <Route path='/patient/register/user/:role' exact element={<Register/>}/>
     <Route path='/doctor/dashboard' exact element={<DoctorDashboard/>}/>
     <Route path='/staff/dashboard' exact element={<StaffDashboard/>}/>
-    <Route path='/admin/login' exact element={<Adminlogin/>}/>
-    <Route path='/doctor/login' exact element={<Doctorlogin/>}/>
-    <Route path='/staff/login' exact element={<Stafflogin/>}/>
-  </Routes>
-  </BrowserRouter>
     
+  </Routes>
+
+</BrowserRouter>
+
     )
   }
   

@@ -15,6 +15,6 @@ router.use(cp());
  router.post('/admin/login',auth.adminlogin)
  router.post('/doctor/login',auth.doctorlogin)
  router.post('/staff/login',auth.stafflogin)
-
+ router.get('/get_patients',auth.patient_list)
    
  module.exports=router;

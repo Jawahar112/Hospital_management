@@ -1,6 +1,6 @@
 
 import Input from "react-validation/build/input"
-import React, { useEffect, useRef, useState } from 'react'
+import React, {  useRef, useState } from 'react'
 import Form from "react-validation/build/form"
 import CheckButton from "react-validation/build/button"
 import Authservice from "../../services/Auth.service"
@@ -21,10 +21,15 @@ export default function Stafflogin() {
 
     Authservice.stafflogin(data.email,data.password).then((res)=>{
 if(res.data.verified){
-  navigate('/staff/dashboard')
+
+  navigate('/staff/dashboard',{replace:true})
+  setsucessful(true)
+
 }
 else{
   navigate('/staff/login')
+  setsucessful(false)
+  setmessage(res.data.msg)
 }
     })
   
@@ -60,7 +65,7 @@ else{
       <button type='submit' className='btn btn-primary m-2' >Login</button>
       {message && (<div className='form-group'>
 
-        <div className={sucessfull?"alert alert-sucess":"aler alert-danger"} role='alert'>{message}</div>
+        <div className={sucessfull?"alert alert-sucess":"alert alert-danger"} role='alert'>{message}</div>
       </div>)}
       <CheckButton style={{display:"none"}} ref={checkbtn}/>
     </div>

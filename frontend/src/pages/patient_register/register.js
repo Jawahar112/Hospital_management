@@ -1,15 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './register.css'
 import Authservice from '../../services/Auth.service';
 import Input from "react-validation/build/input"
 import Form from "react-validation/build/form"
 import CheckButton from "react-validation/build/button"
+import { Label } from 'reactstrap';
+import { useParams } from 'react-router-dom';
+import useNav from '../../hooks/Usenav';
 export default function Register() {
   const form=useRef()
   const [message,setmessage]=useState("");
   const [sucessfull,setsucessful]=useState(false);
   const checkbtn=useRef()
+const {role}=useParams()
+
+
+
   const[data,setdata]=useState({firstname:"",lastname:"",nationality:"",bloodtype:"",address:"",doa:"",email:"",phoneno:"",emergencyphone:""})
+
   async function submithandle(e){
     e.preventDefault();
     setmessage("");
@@ -39,12 +47,20 @@ setsucessful(false);
     }
   }
   return (
+    <>
+    
+     {useNav(role)}
+        
+      
+     
+     
+
     <Form onSubmit={submithandle} ref={form}>
-    <div className='form d-flex justify-content-center'>
-    <div className='form-container mt-5 p-2'>
+    <div className='form  patient_register row'>
+    <div className='form-container'>
     
       <h1 className='text-center text-white'>Patient register</h1>
-    <div className='form-group row'>
+    <div className='form-group row col-9'>
       <div className='col'>
         <Input type='text' className='form-control' placeholder='firstname' onChange={(e)=>{setdata({...data,firstname:e.target.value})}} validations={[required]}/>
       </div>
@@ -52,14 +68,16 @@ setsucessful(false);
         <Input type='text' className='form-control' placeholder='lastname'  onChange={(e)=>{setdata({...data,lastname:e.target.value})}} validations={[required]} />
       </div>
     </div>
-    <div className='form-group pt-3'>
+    <div className='row col-9'>
+      
+    <div className='form-group pt-3 col '>
       <select className='form-select'  onChange={(e)=>{setdata({...data,nationality:e.target.value})}} validations={[required]}>
         <option defaultValue="select">select your nationality</option>
         <option>Indian</option>
         <option>forigner</option>
           </select>
     </div>
-    <div className='form-group pt-3'>
+    <div className='form-group pt-3 col'>
       <select className='form-select'  onChange={(e)=>{setdata({...data,bloodtype:e.target.value})}} validations={[required]}>
         <option defaultValue="select">select your Blood group</option>
         <option>A+</option>
@@ -72,20 +90,41 @@ setsucessful(false);
         <option>AB+</option>
           </select>
     </div>
-    <div className='form-group pt-3'>
+    </div>
+    <div className='row col-9'>
+    <div className='form-group pt-3 col'>
       <Input type='text' className='form-control' placeholder='Enter your address'  onChange={(e)=>{setdata({...data,address:e.target.value})}} validations={[required]}/>    
       </div>
-      <div className='form-group pt-3'>
-        <Input type='date' className='form-control datepicker' onChange={(e)=>{setdata({...data,doa:e.target.value})}} validations={[required]} />
+      <div className='form-group pt-3 col'>
+        <Input type='date' className='form-control datepicker' onChange={(e)=>{setdata({...data,doa:e.target.value})}} validations={[required]} placeholder="Enter Admit Date"/>
       </div>
-      <div className='form-group pt-3'>
+    </div>
+      <div className='row col-9'>
+
+      <div className='form-group pt-3 col'>
         <Input type='email' className='form-control' placeholder='Enter your email'  onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]}/>
       </div>
-      <div className='form-group pt-3'>
+      <div className='form-group pt-3 col'>
         <Input type='number' className='form-control' placeholder='Enter your phoneno'  onChange={(e)=>{setdata({...data,phoneno:e.target.value})}} validations={[required]}/>
       </div>
-      <div className='form-group pt-3'>
+      </div>
+      <div className='row col-9'>
+
+      <div className='form-group pt-3 col'>
         <Input type='number' className='form-control' placeholder='Emergency contact number'  onChange={(e)=>{setdata({...data,emergencyphone:e.target.value})}} validations={[required]}/>
+      </div>
+      <div className='form-group pt-3 row col'>
+        <div className='col-2'>
+
+        <Label>Male</Label>
+        <Input type='radio' className="form-cotrol" name="gender"/>
+        </div>
+        <div className='col-2'>
+
+        <Label>Female</Label>
+        <Input type='radio' className="form-cotrol" name="gender"/>
+        </div>
+      </div>
       </div>
       <button type='submit' className='btn btn-primary m-2' >Register</button>
       {message && (<div className='form-group'>
@@ -96,5 +135,10 @@ setsucessful(false);
     </div>
     </div>
     </Form>
+     
+    
+    </>
+
   )
-}
+  
+  }
