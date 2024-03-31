@@ -6,7 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import { useNavigate} from 'react-router-dom';
 import Authservice from '../../services/Auth.service';
-import LogoutModal from '../../components/comp/modal';
+import LogoutModal from '../../components/comp/patientmodal';
 export default function DoctorNavbar() {
   const navigate=useNavigate()
   
@@ -37,23 +37,18 @@ export default function DoctorNavbar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href='/admin/dashboard'>Dashboard</Nav.Link>
-              
+              <Nav.Link href='/doctor/dashboard'>Dashboard</Nav.Link>
+               
+              <NavDropdown title="appoinments" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/viewappoinments/doctor">view apppoinments</NavDropdown.Item>
+                
+                
+               
+               
+              </NavDropdown>
              
-              <NavDropdown title="patient" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/patientlist">patient_list</NavDropdown.Item>
-                <NavDropdown.Item href="/patient/register/user/admin">patient_register</NavDropdown.Item>
-                
-               
-               
-              </NavDropdown>
-              <NavDropdown title="Doctor" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/doctorlist">doctorlist_list</NavDropdown.Item>
-                
-                
-               
-               
-              </NavDropdown>
+              
+           
               <Nav.Link onClick={()=>{logout()}}>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>

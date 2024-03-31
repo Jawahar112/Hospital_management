@@ -10,7 +10,7 @@ router.use(cors({
  }))
  router.use(cp());
 router.get("/admin",middleware.adminverify,(req,res)=>{
-    console.log(req.role);
+   
 
     if (req.role !== 'admin') {
         return res.json({verified:false, message: 'Access denied' });
@@ -26,5 +26,6 @@ return res.json({verified:true,message:"doctor verified",role:'Doctor'})
 router.get('/logout',logout.logout)
  module.exports=router;
  router.get('/auth',middleware.auth,(req,res)=>{
-    res.json({role:req.role,verified:true})
+    return res.json({role:req.role,verified:true})
  })
+ 

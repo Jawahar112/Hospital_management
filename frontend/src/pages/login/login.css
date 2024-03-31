@@ -1,0 +1,16 @@
+.admin-wrapper{
+    width :100%;
+    height: 100vh;
+background-image: url('../../assests/images/2.jpeg');
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+}
+.doctor-wrapper{
+    width :100%;
+    height: 100vh;
+background-image: url('../../assests/images/1.jpeg');
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+}

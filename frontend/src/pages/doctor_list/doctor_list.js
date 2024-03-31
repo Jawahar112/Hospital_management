@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import AdminNavbar from "../navbar/AdminNav";
-import "./patient.css";
+
+
 import Loading from "../../components/comp/loading";
 import { Table } from "reactstrap";
 import Authservice from "../../services/Auth.service";
@@ -8,12 +8,12 @@ import {
   Deleteusermodal,
   Editmodal,
   ViewModal,
-} from "../../components/comp/patientmodal";
+} from "../../components/comp/doctormodal";
 import { Button, Col, Row } from "react-bootstrap";
 import Protectedroute from "../../utils/Protectedroute";
 import { useParams } from "react-router-dom";
 import useNav from "../../hooks/Usenav";
-export default function GetPatients() {
+export default function GetDoctors() {
   const [list, setList] = useState([]);
   const [loader, setLoading] = useState(true);
   const [deleteToggle, setDeleteToggle] = useState(false);
@@ -24,7 +24,8 @@ export default function GetPatients() {
   const {role}=useParams()
   
   useEffect(() => {
-    Authservice.patient_list().then((res) => {
+    Authservice.doctorlist().then((res) => {
+        console.log(res);
       setLoading(false);
       setList(res.data);
     });
@@ -32,8 +33,9 @@ export default function GetPatients() {
 
   function handleClick(id, action) {
     if (action === "view") {
-      Authservice.patientdata(id).then((res) => {
+      Authservice.doctordata(id).then((res) => {
         setUserData(res.data[0]);
+        
 
         setViewToggle(true);
       });
@@ -62,35 +64,35 @@ export default function GetPatients() {
             <Table striped>
               <thead>
                 <tr>
-                  <td>patient_id</td>
-                  <td>First_Name</td>
-                  <td>Lastname</td>
+                  <td>Doctor_id</td>
+                  <td>Doctor_name</td>
+                  <td>department_id</td>
                   <td>Email</td>
-                  <td>phoneno</td>
-                  <td>Nationality</td>
-                  <td>Adderess</td>
-                  <td>Emergency Contact</td>
-                  <td>Date of Admission</td>
+                  <td>operations</td>
+                  <td>phone_no</td>
+                  <td>salary</td>
+                  <td>Dateofjoin </td>
+               
                 </tr>
               </thead>
               <tbody>
                 {list.map((item, index) => (
                   <tr key={index}>
-                    <td>{item.patient_id}</td>
-                    <td>{item.first_name}</td>
-                    <td>{item.last_name}</td>
-                    <td>{item.Email}</td>
-                    <td>{item.Phone_no}</td>
-                    <td>{item.Nationality}</td>
-                    <td>{item.Address}</td>
-                    <td>{item.Emergency_contact}</td>
-                    <td>{item.DoA}</td>
+                    <td>{item.Doctor_id}</td>
+                    <td>{item.Doctor_name}</td>
+                    <td>{item.department_id}</td>
+                    <td>{item.email}</td>
+                    <td>{item.operations}</td>
+                    <td>{item.phone_no}</td>
+                    <td>{item.salary}</td>
+                    <td>{item.Dateofjoin}</td>
+                    
                     <td>
                       <Row>
                         <Col>
                           <Button
                             onClick={() => {
-                              handleClick(item.patient_id, "edit");
+                              handleClick(item.Doctor_id, "edit");
                             }}
                           >
                             Edit
@@ -99,7 +101,7 @@ export default function GetPatients() {
                         <Col>
                           <Button
                             variant="success"
-                            onClick={() => handleClick(item.patient_id, "view")}
+                            onClick={() => handleClick(item.Doctor_id, "view")}
                           >
                             View
                           </Button>
@@ -108,7 +110,7 @@ export default function GetPatients() {
                           <Button
                             variant="danger"
                             onClick={() =>
-                              handleClick(item.patient_id, "delete")
+                              handleClick(item.Doctor_id, "delete")
                             }
                           >
                             Delete
@@ -126,7 +128,7 @@ export default function GetPatients() {
               Isopen={deleteToggle}
               onClick={setDeleteToggle}
               onconfirm={() => {
-                Authservice.deletepatient(id).then((res) => {
+                Authservice.deletedoctor(id).then((res) => {
                   setDeleteToggle(false);
                   setId(null);
                   window.location.reload();

@@ -6,7 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import {  useNavigate} from 'react-router-dom';
 import Authservice from '../../services/Auth.service';
-import LogoutModal from '../../components/comp/modal';
+import LogoutModal from '../../components/comp/patientmodal';
 export default function StaffNavbar() {
   const navigate=useNavigate()
   
@@ -39,21 +39,21 @@ export default function StaffNavbar() {
             <Nav className="me-auto">
               <Nav.Link href='/admin/dashboard'>Dashboard</Nav.Link>
               
-             
+              <NavDropdown title="appoinments" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/viewappoinments/staff">view apppoinments</NavDropdown.Item>
+                <NavDropdown.Item href="/createappoinments">create appoinmens</NavDropdown.Item>
+                
+               
+               
+              </NavDropdown>
               <NavDropdown title="patient" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/patientlist">patient_list</NavDropdown.Item>
-                <NavDropdown.Item href="/patient/register/user/admin">patient_register</NavDropdown.Item>
+                <NavDropdown.Item href="/patientlist/staff">patient_list</NavDropdown.Item>
+                <NavDropdown.Item href="/patient/register/staff">patient_register</NavDropdown.Item>
                 
                
                
               </NavDropdown>
-              <NavDropdown title="Doctor" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/doctorlist">doctorlist_list</NavDropdown.Item>
-                
-                
-               
-               
-              </NavDropdown>
+              
               <Nav.Link onClick={()=>{logout()}}>Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>

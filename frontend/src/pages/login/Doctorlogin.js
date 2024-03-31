@@ -28,7 +28,7 @@ export default function Doctorlogin() {
         setmessage("")
       }
       else{
-        navigate('/doctor/login')
+        navigate('/doctor/login',{replace:true})
         setmessage(res.data.msg)
 setsucessful(false)
       }
@@ -47,7 +47,9 @@ setsucessful(false)
   }
   return (
     <Form onSubmit={submithandle} ref={form}>
-    <div className='form d-flex justify-content-center'>
+      <div className="doctor-wrapper">
+
+    <div className='form d-flex justify-content-center '>
     <div className='form-container mt-5 p-2'>
     
       <h1 className='text-center text-white'>Doctor Login</h1>
@@ -71,6 +73,7 @@ setsucessful(false)
       <CheckButton style={{display:"none"}} ref={checkbtn}/>
     </div>
     </div>
+      </div>
     </Form> 
   )
 }

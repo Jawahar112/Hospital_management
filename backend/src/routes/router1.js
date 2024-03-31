@@ -16,5 +16,13 @@ router.use(cp());
  router.post('/doctor/login',auth.doctorlogin)
  router.post('/staff/login',auth.stafflogin)
  router.get('/get_patients',auth.patient_list)
-   
+ router.delete('/patient/delete/:id',auth.deletepatinet)  
+ router.get('/patient/get/:id',auth.getpatinet)  
+ router.put('/patient/update/:id',auth.updatepatient)  
+ router.delete('/doctor/delete/:id',auth.deletedoctor)  
+ router.get('/doctor/get/:id',auth.getdoctor)  
+ router.put('/doctor/update/:id',auth.updatedoctor) 
+ router.get('/get/doctor',auth.getdoctors)
+ router.get('/count/:user',auth.conuntuser)
+ router.get('/patient/analsys',auth.monthlyusers)
  module.exports=router;

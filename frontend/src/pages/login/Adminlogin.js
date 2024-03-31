@@ -1,11 +1,11 @@
 
 import Input from "react-validation/build/input"
-import React, {  useEffect, useRef, useState } from 'react'
+import React, {  useRef, useState } from 'react'
 import Form from "react-validation/build/form"
 import CheckButton from "react-validation/build/button"
 import Authservice from "../../services/Auth.service"
-import {  useLocation, useNavigate } from "react-router-dom"
-
+import {  useNavigate } from "react-router-dom"
+import './login.css'
 export default function Adminlogin() {
 
 
@@ -31,10 +31,10 @@ export default function Adminlogin() {
     if(res.data.verified && setsucessful){
       setsucessful(true)
    
-
+navigate('/admin/dashboard/')
      
       
-      navigate('/admin/dashboard',{replace:true})
+      
 
 
 
@@ -59,7 +59,9 @@ export default function Adminlogin() {
   }
   return (
     <Form onSubmit={submithandle} ref={form}>
-    <div className='form d-flex justify-content-center'>
+      <div className="admin-wrapper">
+
+    <div className='form d-flex justify-content-center '>
     <div className='form-container mt-5 p-2'>
     
       <h1 className='text-center text-white'>Admin Login</h1>
@@ -83,6 +85,7 @@ export default function Adminlogin() {
       <CheckButton style={{display:"none"}} ref={checkbtn}/>
     </div>
     </div>
+      </div>
     </Form> 
   )
 }

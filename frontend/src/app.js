@@ -1,5 +1,5 @@
 import {Routes,Route, Navigate, BrowserRouter} from 'react-router-dom'
-import React, { useEffect, useState } from "react";
+import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import Register from './pages/patient_register/register'
@@ -12,8 +12,11 @@ import Adminlogin from './pages/login/Adminlogin';
 import Stafflogin from './pages/login/Stafflogin';
 import GetPatients from './pages/patients_list/Patients';
 import Doctorlogin from './pages/login/Doctorlogin';
-import Protectedroute from './utils/Protectedroute';
+
 import Unauthorized from './pages/404/Unauthorized';
+import Viewappoinments from './pages/Doctor_appoinment/Viewappoinments/Viewappoinments';
+import Createappoinments from './pages/Doctor_appoinment/Createappoinment/Createappoinments';
+import GetDoctors from './pages/doctor_list/doctor_list';
 
 
 export default function App() {
@@ -35,18 +38,20 @@ export default function App() {
     <Route path='/doctor/login' exact element={<Doctorlogin/>}/>
     <Route path='/admin/login' exact element={<Adminlogin/>}/>
     <Route path='/unauthorized' element={<Unauthorized/>}/>
-  
+  <Route path='/viewappoinments/:role' element={<Viewappoinments/>}/>
+  <Route path='/createappoinments' element={<Createappoinments/>}/>
 
-    <Route element={<Protectedroute/>}>
+    
 <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
 
-  <Route path='/PatientList' exact element={<GetPatients/>}/>
+  <Route path='/PatientList/:role' exact element={<GetPatients/>}/>
+  <Route path='/doctorlist/:role' exact element={<GetDoctors/>}/>
     <Route path='/admin/patient/patient_list' exact element={<Patients/>}/>
-    </Route>
+    
   
-    <Route path='/patient/register/user/:role' exact element={<Register/>}/>
-    <Route path='/doctor/dashboard' exact element={<DoctorDashboard/>}/>
-    <Route path='/staff/dashboard' exact element={<StaffDashboard/>}/>
+    <Route path='/patient/register/:role' exact element={<Register/>}/>
+    <Route path='/doctor/dashboard/' exact element={<DoctorDashboard/>}/>
+    <Route path='/staff/dashboard/' exact element={<StaffDashboard/>}/>
     
   </Routes>
 

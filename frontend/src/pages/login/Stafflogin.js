@@ -27,7 +27,7 @@ if(res.data.verified){
 
 }
 else{
-  navigate('/staff/login')
+  navigate('/staff/login',{replace:true})
   setsucessful(false)
   setmessage(res.data.msg)
 }

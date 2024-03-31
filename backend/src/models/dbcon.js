@@ -5,7 +5,8 @@ const dbcon=sql.createConnection({
     host:"localhost",
     user:"root",
     password:"",
-    database:"hospital_management"
+    database:"hospital_management",
+    dateStrings:true
  });
  module.exports=dbcon;
 
