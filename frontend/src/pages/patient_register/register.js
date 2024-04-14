@@ -4,7 +4,7 @@ import Authservice from "../../services/Auth.service";
 import Input from "react-validation/build/input";
 import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
-
+import isempty from "../../utils/validations";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useNav from "../../hooks/Usenav";
 import Protectedroute from "../../utils/Protectedroute";
@@ -59,15 +59,7 @@ const navigate=useNavigate();
       );
     }
   }
-  const required = (value) => {
-    if (!value) {
-      return (
-        <div className="invalid-feedback d-block font-weight-bold">
-          please enter valid input
-        </div>
-      );
-    }
-  };
+
   return (
     <>
       <Protectedroute user={role}>
@@ -86,7 +78,7 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, firstname: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]}
                   />
                 </div>
                 <div className="col">
@@ -97,7 +89,7 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, lastname: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]}
                   />
                 </div>
               </div>
@@ -108,7 +100,7 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, nationality: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]}
                   >
                     <option defaultValue="select">
                       select your nationality
@@ -123,7 +115,9 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, bloodtype: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]
+                    
+                    }
                   >
                     <option defaultValue="select">
                       select your Blood group
@@ -148,7 +142,7 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, address: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]}
                   />
                 </div>
                 <div className="form-group pt-3 col">
@@ -158,7 +152,7 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, doa: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]}
                     placeholder="Enter Admit Date"
                   />
                 </div>
@@ -172,7 +166,7 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, email: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]}
                   />
                 </div>
                 <div className="form-group pt-3 col">
@@ -183,7 +177,7 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, phoneno: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]}
                   />
                 </div>
               </div>
@@ -196,7 +190,7 @@ const navigate=useNavigate();
                     onChange={(e) => {
                       setdata({ ...data, emergencyphone: e.target.value });
                     }}
-                    validations={[required]}
+                    validations={[isempty]}
                   />
                 </div>
                 <div className="form-group pt-3 row col">

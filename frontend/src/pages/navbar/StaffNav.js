@@ -37,7 +37,7 @@ export default function StaffNavbar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href='/admin/dashboard'>Dashboard</Nav.Link>
+              <Nav.Link href='/staff/dashboard'>Dashboard</Nav.Link>
               
               <NavDropdown title="appoinments" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/viewappoinments/staff">view apppoinments</NavDropdown.Item>

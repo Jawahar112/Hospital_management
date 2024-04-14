@@ -41,7 +41,7 @@ settoggle(par)
               
             <NavDropdown title="appoinments" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/viewappoinments/admin">view apppoinments</NavDropdown.Item>
-                <NavDropdown.Item href="/createappoinments">create appoinmens</NavDropdown.Item>
+                <NavDropdown.Item href="/appointments/admin">create appoinmens</NavDropdown.Item>
                 
                
                
@@ -56,6 +56,7 @@ settoggle(par)
             </NavDropdown>
             <NavDropdown title="Doctor" id="basic-nav-dropdown">
               <NavDropdown.Item href="/doctorlist/admin">doctorlist_list</NavDropdown.Item>
+              <NavDropdown.Item href="/doctor/addDoctor/admin">Add Doctor</NavDropdown.Item>
               
               
              

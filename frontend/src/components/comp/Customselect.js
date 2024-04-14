@@ -5,7 +5,7 @@ export default function Customselect({ data,field,children,...props}) {
   return (<>
     <select {...props} defaultValue={children} >
     <option defaultValue={children}>
-                     Select your doctor
+                 {children}
                     </option>
   {data.map((data,index) => {
    

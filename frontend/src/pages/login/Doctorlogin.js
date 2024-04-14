@@ -46,19 +46,19 @@ setsucessful(false)
     }
   }
   return (
-    <Form onSubmit={submithandle} ref={form}>
+    <Form onSubmit={submithandle} ref={form} autoComplete="off" className="doctorform">
       <div className="doctor-wrapper">
 
-    <div className='form d-flex justify-content-center '>
+    <div className='doctor-form form d-flex justify-content-center '>
     <div className='form-container mt-5 p-2'>
     
       <h1 className='text-center text-white'>Doctor Login</h1>
     <div className='form-group row'>
       <div className='col'>
-        <Input type='text' className='form-control' name="email" placeholder='Email' onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]}/>
+        <Input type='text' className='doctor-email form-control' name="doctor-email" placeholder='Email' onChange={(e)=>{setdata({...data,email:e.target.value})}} validations={[required]} autoComplete="off"/>
       </div>
       <div className='col'>
-        <Input type='password' className='form-control' name="password" placeholder='Password'  onChange={(e)=>{setdata({...data,password:e.target.value})}} validations={[required]} />
+        <Input type='password' className='doctor-password form-control' name="doctor-password" placeholder='Password'  onChange={(e)=>{setdata({...data,password:e.target.value})}} validations={[required]} autoComplete="off" />
       </div>
     </div>
    

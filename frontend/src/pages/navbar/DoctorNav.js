@@ -38,16 +38,8 @@ export default function DoctorNavbar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href='/doctor/dashboard'>Dashboard</Nav.Link>
-               
-              <NavDropdown title="appoinments" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/viewappoinments/doctor">view apppoinments</NavDropdown.Item>
-                
-                
-               
-               
-              </NavDropdown>
              
-              
+              INSERT into `available_time` (Doctor_id,Avilable_time) VALUES(5833a2fc-e8d8-457e-8dce-b60f4c,JSON_OBJECT('mon',JSON_ARRAY('12:00','12:30','1:00')))
            
               <Nav.Link onClick={()=>{logout()}}>Logout</Nav.Link>
             </Nav>

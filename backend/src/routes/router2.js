@@ -29,3 +29,4 @@ router.get('/logout',logout.logout)
     return res.json({role:req.role,verified:true})
  })
  
+

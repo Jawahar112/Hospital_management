@@ -104,24 +104,57 @@ return axios.get(API_URl+"count/"+user)
 const monthlypatients=()=>{
   return axios.get(API_URl+"patient/analsys")
 }
+const adddoctor=(Department_id,doctorname,email,phoneno,password,specialist)=>{
+  return axios.post(API_URl+'add/doctor',{Department_id,doctorname,email,phoneno,password,specialist})
+}
+const getdepid=()=>{
+  return axios.get(API_URl+'get/department_data')
+}
+const userdata=(user)=>{
+return axios.get(API_URl+'get/user/'+user)
+}
+const getappoinments=()=>{
+  return axios.get(API_URl+'view/appoinments/')
+}
+const getdoctorappoinments=(id)=>{
+
+  return axios.get(API_URl+'view/appoinments/'+id)
+}
+const getschedules=(id,day)=>{
+  return axios.get(API_URl+`get/schedule/${id}/${day}`)
+}
+const checkappointment=(date,day,id,time)=>{
+return axios.get(API_URl+`get/appointment/${date}/${time}`)
+}
+const createappointment=(doctor_id,time,date,patient_email)=>{
+  return axios.post(API_URl+'add/appointment',{doctor_id,time,date,patient_email})
+}
 const Authservice = {
-  register,
-  adminlogin,
-  stafflogin,
-  doctorlogin,
-  adminverify,
-  doctorverify,
-  logout,
-  patient_list,
-  auth,
-  deletepatient,
-  patientdata,
-  userupdate,
-  doctorlist,
-  deletedoctor,
-  doctordata,
-  doctorupdate,
-  countuser,
-  monthlypatients
+  register,//user regsiter
+  adminlogin,//admin login
+  stafflogin,//staff login
+  doctorlogin,//doctor login
+  adminverify,//verify function
+  doctorverify,//verify funcion
+  logout,//logout controller
+  patient_list,//functon to retreive patient list
+  auth,//function to authorizaton used in protected route
+  deletepatient,//function to delete a patient
+  patientdata,//particuler patient data
+  userupdate,//used to update a patient data
+  doctorlist,//used to retreive doctor list
+  deletedoctor,//used to delete a doctor
+  doctordata,//particullaer doctor date
+  doctorupdate,//doctor update function
+  countuser,//count number of patient 
+  monthlypatients,//moonthly number of patients
+  adddoctor,//function  to add a doctor
+  getdepid,//used to get department id
+  userdata,
+  getappoinments,
+  getdoctorappoinments,
+  getschedules,
+  checkappointment,
+  createappointment
 };
 export default Authservice;
