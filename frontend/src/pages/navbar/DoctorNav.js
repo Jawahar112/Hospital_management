@@ -39,7 +39,7 @@ export default function DoctorNavbar() {
             <Nav className="me-auto">
               <Nav.Link href='/doctor/dashboard'>Dashboard</Nav.Link>
              
-              INSERT into `available_time` (Doctor_id,Avilable_time) VALUES(5833a2fc-e8d8-457e-8dce-b60f4c,JSON_OBJECT('mon',JSON_ARRAY('12:00','12:30','1:00')))
+          
            
               <Nav.Link onClick={()=>{logout()}}>Logout</Nav.Link>
             </Nav>

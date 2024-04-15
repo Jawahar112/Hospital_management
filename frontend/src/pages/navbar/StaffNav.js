@@ -41,7 +41,7 @@ export default function StaffNavbar() {
               
               <NavDropdown title="appoinments" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/viewappoinments/staff">view apppoinments</NavDropdown.Item>
-                <NavDropdown.Item href="/createappoinments">create appoinmens</NavDropdown.Item>
+                <NavDropdown.Item href="/appointments/staff">create appoinments</NavDropdown.Item>
                 
                
                

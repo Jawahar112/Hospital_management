@@ -29,8 +29,8 @@ export default function Doctorappoinments() {
               <td>appoinment_time</td>
               <td>patient_id</td>
               <td>Status</td>
-              <td>Actions</td>
               <td>patient_name</td>
+              <td>Actions</td>
             </tr>
           </thead>
           <tbody>

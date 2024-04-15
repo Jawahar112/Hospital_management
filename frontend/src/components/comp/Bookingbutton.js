@@ -6,14 +6,15 @@ export default function Bookingbutton({children,date,day,id,time}) {
   const [booked,setbooked] =useState(false)
   const [Ismodelopened,setmodalopened]=useState(false)
   useEffect(()=>{
-    Authservice.checkappointment(date,day,id,time).then((res)=>{
-     setbooked(res.data.booked)
+    const getdata=setTimeout(()=>{
 
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-  },[date,day])
+      Authservice.checkappointment(date,time).then((res)=>{
+        setbooked(res.data.booked)
+       
+      });
+    },2000)
+   
+  return ()=>clearTimeout(getdata)},[day,id,time])
   return (
  <>
     <Button className={`mt-3 btn btn-${booked ? "danger":"primary"}`} onClick={()=>{setmodalopened(true)}} disabled={booked}>{booked?"Booked":children}</Button>

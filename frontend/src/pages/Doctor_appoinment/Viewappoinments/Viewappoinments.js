@@ -9,6 +9,7 @@ const [doctordata,setdoctordata]=useState([])
   useEffect(()=>{
   Authservice.doctorlist().then((res)=>{
     setdoctordata(res.data)
+    console.log(res);
 
   })
   .catch((err)=>{
@@ -26,7 +27,7 @@ const {role}=useParams()
       <tr>
         <td>Doctor_name</td>
         <td>Doctor_id</td>
-        <td>patient_name</td>
+        <td>specialist</td>
         <td>appoinments</td>
       </tr>
     </thead>
@@ -38,7 +39,7 @@ const {role}=useParams()
 
   <td>{item.Doctor_name}</td>
   <td>{item.Id}</td>
-  <td>{item.Doctor_name}</td>
+  <td>{item.specialist}</td>
 <td>
    <Link to={`/viewappointment/id/${item.Id}/${role}`}>
   

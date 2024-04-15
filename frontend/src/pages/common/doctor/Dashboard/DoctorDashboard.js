@@ -29,6 +29,7 @@ setappointmentdata(res.data)
         <tr>
           <td>appointment Id</td>
           <td>patient_id</td>
+          <td>patient_name</td>
           <td>Date</td>
           <td>fees</td>
           <td>appoinment time</td>
@@ -42,10 +43,12 @@ setappointmentdata(res.data)
             <tr key={item.appoinment_id}>
             <td>{item.appoinment_id}</td>
             <td>{item.patient_id}</td>
+            <td>{item.patient_name}</td>
+
             <td>{item.Date}</td>
             <td className={`${item.fees==="pending"?"bg-danger":"bg-success"}`}>{item.fees}</td>
             <td >{item.appoinment_time}</td>
-            <td>{item.status}</td>
+            <td>{item.Status}</td>
             <td><select>
                       <option>Booked</option>
                       <option>Cancelled</option>

@@ -41,13 +41,14 @@ export function ViewModal({ Isopen, onClick, data }) {
     <Modal isOpen={opened}>
       <ModalBody>
         <Row>
-          <Col xxl={12}>First_Name:{data.first_name}</Col>
-          <Col xxl={12}>Last_Name:{data.last_name}</Col>
-          <Col xxl={12}>Email:{data.Email}</Col>
-          <Col xxl={12}>Phone_no:{data.Phone_no}</Col>
-          <Col xxl={12}>Address:{data.Address}</Col>
+          <Col xxl={12}>Doctor_Id:{data.Id}</Col>
+          <Col xxl={12}>Doctor_name:{data.Doctor_name}</Col>
+          <Col xxl={12}>Phone_no:{data.phone_no}</Col>
+          <Col xxl={12}> email:{data.email}</Col>
           <Col xxl={12}>Date of admit:{data.admitdate}</Col>
-          <Col xxl={12}>Blood_type:{data.Bloodtype}</Col>
+          <Col xxl={12}> degree:{data. degree}</Col>
+          <Col xxl={12}>  password:{data.  password}</Col>
+          <Col xxl={12}>  specialist:{data.  specialist}</Col>
         </Row>
 
         <Button
@@ -68,35 +69,32 @@ export function Editmodal({ Isopen, userdata, onclick }) {
   const [message, setmessage] = useState("");
   const [sucessfull, setsucessful] = useState(false);
   const checkbtn = useRef();
-const [firstname,setfirstname]=useState('')
-const[lastname,setlastname]=useState('')
-const [nationality,setnationality]=useState('')
-const[Address,setaddress]=useState('')
-const[DoA,setdoa]=useState('')
-const[Email,setemail]=useState('')
-const[Phone_no,setphoneno]=useState('')
-const[eme_con,seteme_con]=useState('')
-const[Bloodtype,setbloodtype]=useState('')
 
-const [upadateddata,setupdateddata]=useState({ department_id:'',Doctor_id:'',Doctor_name:'',DoAphone_no:'', email:'',salary:'',operations:'',Dateofjoin:'',admitdate:''})
+const[Doctor_name,setname]=useState('')
+const [phone_no,setphone_no]=useState('')
+const[specialist,setspecialist]=useState('')
+const[email,setemail]=useState('')
+const[department_id,setdepartment_id]=useState('')
+
+
+const [upadateddata,setupdateddata]=useState({ department_id:'',specialist:'',Doctor_id:'',Doctor_name:'',DoAphone_no:'', email:'',salary:'',operations:'',Dateofjoin:'',admitdate:''})
  
   useEffect(() => {
  if(userdata){
 
-   
-        setfirstname(userdata.first_name)
-       setlastname(userdata.last_name)
-       setemail(userdata.Email)
-       setbloodtype(userdata.Bloodtype)
-       setnationality(userdata.Nationality)
-       setdoa(userdata.admitdate)
-       setaddress(userdata.Address)
-       setphoneno(userdata.Phone_no)
-       seteme_con(userdata.Emergency_contact)
+  
+       
+       setname(userdata.Doctor_name)
+       setemail(userdata.email)
+     
+       setphone_no(userdata.phone_no)
+       setspecialist(userdata.specialist)
+       setdepartment_id(userdata.department_id)
+     
     }
 
   },[userdata]);
-
+  
   async function submithandle(e) {
    
     e.preventDefault();
@@ -106,10 +104,10 @@ const [upadateddata,setupdateddata]=useState({ department_id:'',Doctor_id:'',Doc
 
     if (checkbtn.current.context._errors.length === 0) {
       Authservice.userupdate(userdata.patient_id,upadateddata).then((res)=>{
-console.log(res);
+
 setopened(false)
 window.location.reload();
-      })
+      },[])
     }
   }
   const required = (value) => {
@@ -124,7 +122,7 @@ window.location.reload();
   return (
     <Modal isOpen={opened}>
       <Form onSubmit={submithandle} ref={form}>
-        <div className="form  patient_register row">
+        <div className="form   row">
           <div className="form-container">
             <h1 className="text-center text-white">Patient register</h1>
             <div className="form-group row col-9">
@@ -132,9 +130,9 @@ window.location.reload();
                 <Input
                   type="text"
                   className="form-control"
-                  placeholder="firstname"
-                  value={firstname}
-                  onChange={(e)=>{setfirstname(e.target.value);setupdateddata({...upadateddata,first_name:e.target.value})}}
+                  placeholder="Doctor Name"
+                  value={Doctor_name}
+                  onChange={(e)=>{setname(e.target.value);setupdateddata({...upadateddata,Doctor_name:e.target.value})}}
                   validations={[required]}
                 />
               </div>
@@ -142,69 +140,39 @@ window.location.reload();
                 <Input
                   type="text"
                   className="form-control"
-                  placeholder="lastname"
-                  value={lastname}
-                  onChange={(e)=>{setlastname(e.target.value);setupdateddata({...upadateddata,last_name:e.target.value})}}
+                  placeholder="email"
+                  value={email}
+                  onChange={(e)=>{setemail(e.target.value);setupdateddata({...upadateddata,email:e.target.value})}}
                   validations={[required]}
                 />
               </div>
             </div>
             <div className="row col-9">
-              <div className="form-group pt-3 col ">
-                <select
-                name=""
-                  className="form-select"
-                  value={nationality}
-                  onChange={(e)=>{setnationality(e.target.value);setupdateddata({...upadateddata,Nationality:e.target.value})}}
-                  validations={[required]}
-                defaultChecked={nationality}
-                >
-                  <option>select your option</option>
-                  <option>Indian</option>
-                  <option>forigner</option>
-                </select>
-              </div>
+              
               <div className="form-group pt-3 col">
                 <select
                   className="form-select"
-                  value={Bloodtype}
-                  onChange={(e)=>{setbloodtype(e.target.value);setupdateddata({...upadateddata,Bloodtype:e.target.value})}}
+                  value={phone_no}
+                  onChange={(e)=>{setspecialist(e.target.value);setupdateddata({...upadateddata,specialist:e.target.value})}}
                   validations={[required]}
                 >
-                  <option defaultValue="select">select your Blood group</option>
-                  <option>A+</option>
-                  <option>A-</option>
-                  <option>B+</option>
-                  <option>B-</option>
-                  <option>O+</option>
-                  <option>O-</option>
-                  <option>AB-</option>
-                  <option>AB+</option>
+                  <option defaultValue="select">
+                      select doctor specialist
+                    </option>
+                    <option>orthologist</option>
+                    <option>ent specialist</option>
+                    <option>psyhologist</option>
+                    <option>physiotherapist</option>
+                    <option>cardiology</option>
+                    <option>dentist</option>
+                    <option>nuerologist</option>
+                    <option>bone specialist</option>
                 </select>
               </div>
             </div>
             <div className="row col-9">
-              <div className="form-group pt-3 col">
-                <Input
-                  type="text"
-                  value={Address}
-                  className="form-control"
-                  placeholder="Enter your address"
-                
-                  onChange={(e)=>{setaddress(e.target.value);setupdateddata({...upadateddata,Address:e.target.value})}}
-                  validations={[required]}
-                />
-              </div>
-              <div className="form-group pt-3 col">
-                <Input
-                  type="date"
-                  className="form-control datepicker"
-                  value={DoA}
-                  onChange={(e)=>{setdoa(e.target.value);setupdateddata({...upadateddata,DoA:e.target.value})}}
-                  validations={[required]}
-                  placeholder="Enter Admit Date"
-                />
-              </div>
+              
+              
             </div>
             <div className="row col-9">
               <div className="form-group pt-3 col">
@@ -212,38 +180,27 @@ window.location.reload();
                   type="email"
                   className="form-control"
                   placeholder="Enter your email"
-                  value={Email}
-                  onChange={(e)=>{setemail(e.target.value);setupdateddata({...upadateddata,Email:e.target.value})}}
+                  value={email}
+                  onChange={(e)=>{setemail(e.target.value);setupdateddata({...upadateddata,email:e.target.value})}}
                   validations={[required]}
                 />
               </div>
               <div className="form-group pt-3 col">
                 <Input
                   type="number"
-                  value={Phone_no}
+                  value={phone_no}
                   className="form-control"
                   placeholder="Enter your phoneno"
                   onChange={
                    (e)=>{
-                    setphoneno(e.target.value);setupdateddata({...upadateddata,Phone_no:e.target.value})
+                    setphone_no(e.target.value);setupdateddata({...upadateddata,Phone_no:e.target.value})
                    }
                   }
                   validations={[required]}
                 />
               </div>
             </div>
-            <div className="row col-9">
-              <div className="form-group pt-3 col">
-                <Input
-                  type="number"
-                  className="form-control"
-                  value={eme_con}
-                  placeholder="Emergency contact number"
-                  onChange={(e)=>{seteme_con(e.target.value);setupdateddata({...upadateddata,Emergency_contact:e.target.value})}}
-                  validations={[required]}
-                />
-              </div>
-            </div>
+            
             <input
               type="submit"
               className="btn btn-primary m-2"

@@ -54,7 +54,7 @@ export default function App() {
   
     <Route path='/patient/register/:role' exact element={<Register/>}/>
     <Route path='/doctor/dashboard/' exact element={<DoctorDashboard/>}/>
-    <Route path='/staff/dashboard/' exact element={<StaffDashboard/>}/>
+    <Route path='/staff/dashboard/' exact element={<Appointments/>}/>
     <Route path='/doctor/AddDoctor/:role' exact element={<Adddoctors/>}/>
     <Route path='/viewappointment/id/:id/:role' exact element={<Doctorappoinments/>}/>
   </Routes>

@@ -25,7 +25,7 @@ export default function GetDoctors() {
   
   useEffect(() => {
     Authservice.doctorlist().then((res) => {
-        console.log(res);
+       console.log(res);
       setLoading(false);
       setList(res.data);
     });
@@ -35,7 +35,7 @@ export default function GetDoctors() {
     if (action === "view") {
       Authservice.doctordata(id).then((res) => {
         setUserData(res.data[0]);
-        
+       console.log(res);
 
         setViewToggle(true);
       });
@@ -68,31 +68,31 @@ export default function GetDoctors() {
                   <td>Doctor_name</td>
                   <td>department_id</td>
                   <td>Email</td>
-                  <td>operations</td>
+          
                   <td>phone_no</td>
                   <td>salary</td>
-                  <td>Dateofjoin </td>
+              
                
                 </tr>
               </thead>
               <tbody>
                 {list.map((item, index) => (
                   <tr key={index}>
-                    <td>{item.Doctor_id}</td>
+                    <td>{item.Id}</td>
                     <td>{item.Doctor_name}</td>
                     <td>{item.department_id}</td>
                     <td>{item.email}</td>
-                    <td>{item.operations}</td>
+                  
                     <td>{item.phone_no}</td>
                     <td>{item.salary}</td>
-                    <td>{item.Dateofjoin}</td>
+                   
                     
                     <td>
                       <Row>
                         <Col>
                           <Button
                             onClick={() => {
-                              handleClick(item.Doctor_id, "edit");
+                              handleClick(item.Id, "edit");
                             }}
                           >
                             Edit
@@ -101,7 +101,7 @@ export default function GetDoctors() {
                         <Col>
                           <Button
                             variant="success"
-                            onClick={() => handleClick(item.Doctor_id, "view")}
+                            onClick={() => handleClick(item.Id, "view")}
                           >
                             View
                           </Button>
@@ -110,7 +110,7 @@ export default function GetDoctors() {
                           <Button
                             variant="danger"
                             onClick={() =>
-                              handleClick(item.Doctor_id, "delete")
+                              handleClick(item.Id, "delete")
                             }
                           >
                             Delete

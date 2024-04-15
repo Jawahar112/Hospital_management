@@ -27,7 +27,7 @@ export default function Appointmentmodel(props) {
             <Input type="email" placeholder="Enter patient Email" className=" form-control p-2" onChange={(e)=>{setdata({...data,email:e.target.value})}}/>
             <Input type="number" placeholder="Enter patient PhoneNo" className=" form-control p-2"/>
             
-            <Button type="submit"  value="submit">BOOK</Button>
+            <Button type="submit"  value="submit" onClick={()=>{props.onClick();}}>BOOK</Button>
         </Form>
 
    </Modal>

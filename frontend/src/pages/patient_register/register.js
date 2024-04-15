@@ -194,16 +194,11 @@ const navigate=useNavigate();
                   />
                 </div>
                 <div className="form-group pt-3 row col">
-                  <div className="col-2">
-                    <label>Male
-
-                    <input type="radio"  name="gender" checked={data.gender==="male"}value="male" onChange={(e)=>{setdata({...data,gender:e.target.value})}} />
-                    </label>
-                  </div>
-                  <div className="col-2">
-                    <label>Female</label>
-                    <input type="radio"  name="gender" checked={data.gender==="female"} value="female" onChange={(e)=>{setdata({...data,gender:e.target.value});}}  />
-                  </div>
+                <select className="form-select" onChange={(e)=>{setdata({...data,gender:e.target.value})}}>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="Others">Others</option>
+                  </select>
                 </div>
               </div>
               <input

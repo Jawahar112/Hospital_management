@@ -22,7 +22,7 @@ export default function Bookingcomponent({day,id,date}) {
           .catch((error) => {
             console.error("Error fetching schedules:", error);
           });
-      }, []);
+      }, [id,day]);
   return (
       <Card>
 <Card.Header>

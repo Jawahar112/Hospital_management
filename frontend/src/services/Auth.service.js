@@ -123,7 +123,7 @@ const getdoctorappoinments=(id)=>{
 const getschedules=(id,day)=>{
   return axios.get(API_URl+`get/schedule/${id}/${day}`)
 }
-const checkappointment=(date,day,id,time)=>{
+const checkappointment=(date,time)=>{
 return axios.get(API_URl+`get/appointment/${date}/${time}`)
 }
 const createappointment=(doctor_id,time,date,patient_email)=>{

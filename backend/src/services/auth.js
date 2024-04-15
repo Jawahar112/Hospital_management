@@ -33,14 +33,14 @@ exports.regitser = (req, res) => {
     gender
   } = req.body;
   
-console.log(req.body);
+
   const sql = `INSERT INTO patients( patient_id,first_name, last_name, Nationality, Address, DoA, Email, Phone_no, Emergency_contact, Bloodtype,Gender) VALUES ("${uuid}","${firstname}","${lastname}","${nationality}","${address}","${dob}","${email}","${phoneno}","${emergencyphone}","${bloodtype}","${gender}");`;
 
   db.query(sql, (err, result) => {
     if (err) {
       console.log(err);
     }
-    res.json("sucess");
+    return res.json("sucess");
   });
 };
 exports.adminlogin = (req, res) => {
@@ -166,7 +166,7 @@ console.log(req.body);
     }
   }
   let sqlquery = "update patients set ";
-  sqlquery += fieldstoupdate.join(", ") +  ` where patient_id=${id}`;
+  sqlquery += fieldstoupdate.join(", ") +  ` where patient_id="${id}"`;
   console.log(sqlquery);
 db.query(sqlquery,(err,result)=>{
    if (err) console.log(err);
@@ -183,7 +183,7 @@ exports.getdoctors=(req,res)=>{
 }
 exports.deletedoctor = (req, res) => {
   const { id } = req.params;
-  const sql = `delete from doctors where Doctor_id ="${id}"`;
+  const sql = `delete from doctors where Id ="${id}"`;
   db.query(sql, (err, result) => {
     if (err) {
       console.log(err);
@@ -248,10 +248,12 @@ exports.monthlyusers=(req,res)=>{
 }
 exports.adddoctor=(req,res)=>{
   const uuid=uuidv4()
+  const currentdate=moment().date()
+  console.log(currentdate);
   const {Department_id,doctorname,email,phoneno,password,specialist }=req.body
   console.log(req.body);
-  const sql="insert into doctors (Doctor_id,department_id,Doctor_name,email,phone_no,password,specialist ) values (?,?,?,?,?,?,?)"
-db.query(sql,[uuid,Department_id,doctorname,email,phoneno,password,specialist ],(err,result)=>{
+  const sql="insert into doctors (Id,department_id,Doctor_name,email,phone_no,password,specialist,operations, ) values (?,?,?,?,?,?,?,0)"
+db.query(sql,[uuid,Department_id,doctorname,email,phoneno,password,specialist],(err,result)=>{
   if (err) console.log(err);
   return res.json({inserted:true})
 })
@@ -328,6 +330,7 @@ const sql=`select * from appointment where Date="${date}" AND appoinment_time="$
 db.query(sql,(err,result)=>{
   if(err) console.log(err);
  if(result.length>0){
+  console.log(result);
   return res.json({booked:true})
  }
 })
@@ -343,7 +346,7 @@ exports.createappointment = (req, res) => {
           console.log(err);
           return res.status(500).json({ error: "Internal Server Error" });
       }
-      console.log(result);
+      
       return res.json(result);
   });
 };

@@ -150,7 +150,7 @@ window.location.reload();
   return (
     <Modal isOpen={opened}>
       <Form onSubmit={submithandle} ref={form}>
-        <div className="form  patient_register row">
+        <div className="form   row">
           <div className="form-container">
             <h1 className="text-center text-white">Patient register</h1>
             <div className="form-group row col-9">
@@ -196,6 +196,7 @@ window.location.reload();
                   value={Bloodtype}
                   onChange={(e)=>{setbloodtype(e.target.value);setupdateddata({...upadateddata,Bloodtype:e.target.value})}}
                   validations={[required]}
+                  defaultChecked={Bloodtype}
                 >
                   <option defaultValue="select">select your Blood group</option>
                   <option>A+</option>

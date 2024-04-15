@@ -22,7 +22,7 @@ export default function Stafflogin() {
     Authservice.stafflogin(data.email,data.password).then((res)=>{
 if(res.data.verified){
 
-  navigate('/staff/dashboard',{replace:true})
+  navigate('/appointments/staff',{replace:true})
   setsucessful(true)
 
 }
